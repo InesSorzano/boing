@@ -3,7 +3,6 @@ window.addEventListener('touchstart', function()
 {			
   IS_TOUCH	= true;
 });
-
 let config = {
   type: Phaser.AUTO,
   width: window.innerWidth,
@@ -29,6 +28,8 @@ let frog;
 let boing;
 // Check if top or bottom
 let isTop=false;
+// Check if top or bottom
+let isLeft=false;
 // Threshold to avoid pixel error
 let threshold = 20;
 
@@ -72,5 +73,20 @@ function update ()
     isTop=false;  
     boing.play();
     console.log("bottom");
+  }
+  // Check if sprite is below canvas limit 
+  if(frog.x - (frog.width/2) <= threshold){
+    if (isLeft)return; 
+    // play sound effect once
+    isLeft=true;  
+    boing.play();
+    console.log("left");
+  }
+  // Check if sprite is aboce canvas limit 
+  if(frog.x - (frog.width/2)  >= (config.width - frog.width) - threshold){
+    if (!isLeft)return;
+    isLeft=false;  
+    boing.play();
+    console.log("right");
   }
 }
