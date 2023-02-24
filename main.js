@@ -1,3 +1,9 @@
+let IS_TOUCH	= false;
+window.addEventListener('touchstart', function()
+{			
+  IS_TOUCH	= true;
+});
+
 let config = {
   type: Phaser.AUTO,
   width: window.innerWidth,
@@ -41,6 +47,8 @@ function create ()
   frog.setVelocity(200, 300);
   frog.setBounce(1, 1);
   frog.setCollideWorldBounds(true);
+
+  if(IS_TOUCH ) frog.height/2; frog.width/2;
 
   // Sound effect
   boing = this.sound.add('boing');
