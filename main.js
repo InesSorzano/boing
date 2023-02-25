@@ -22,10 +22,12 @@ let config = {
 
 let game = new Phaser.Game(config);
 
+console.log("🐸");
+
 // Frog sprite
 let frog;
 // Sound effect
-let boing;
+let squeak;
 // Check if top or bottom
 let isTop=false;
 // Check if top or bottom
@@ -33,11 +35,19 @@ let isLeft=false;
 // Threshold to avoid pixel error
 let threshold = 20;
 
+function squeakLog(){
+  console.log("squeak");
+}
+
+function squeakSound(){
+  squeak.play()
+}
+
 function preload ()
 {
   this.load.image('frog', 'src/frog.png');
 
-  this.load.audio("boing", "src/boing.mp3")
+  this.load.audio("squeak", "src/squeak.mp3")
 }
 
 function create ()
@@ -52,7 +62,7 @@ function create ()
   if(IS_TOUCH ) frog.setScale(.4); threshold = 30;
 
   // Sound effect
-  boing = this.sound.add('boing');
+  squeak = this.sound.add('squeak');
 }
 
 function update ()
@@ -64,29 +74,31 @@ function update ()
     if (isTop)return; 
     // play sound effect once
     isTop=true;  
-    boing.play();
-    console.log("top");
+    squeakSound();
+    squeakLog();
   }
   // Check if sprite is aboce canvas limit 
   if(frog.y - (frog.height/2)  >= (config.height - frog.height) - threshold){
     if (!isTop)return;
     isTop=false;  
-    boing.play();
-    console.log("bottom");
+    squeakSound();
+    squeakLog();
   }
   // Check if sprite is below canvas limit 
   if(frog.x - (frog.width/2) <= threshold){
     if (isLeft)return; 
     // play sound effect once
     isLeft=true;  
-    boing.play();
-    console.log("left");
+    squeakSound();
+    squeakLog();
   }
   // Check if sprite is aboce canvas limit 
   if(frog.x - (frog.width/2)  >= (config.width - frog.width) - threshold){
     if (!isLeft)return;
     isLeft=false;  
-    boing.play();
-    console.log("right");
+    squeakSound();
+    squeakLog();
   }
 }
+
+
