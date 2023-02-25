@@ -35,8 +35,11 @@ let isLeft=false;
 // Threshold to avoid pixel error
 let threshold = 20;
 
+let countSqueak = 0;
+
 function squeakLog(){
-  console.log("squeak");
+  console.log(countSqueak, " squeak!");
+  countSqueak += 1;
 }
 
 function squeakSound(){
