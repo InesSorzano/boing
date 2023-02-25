@@ -49,7 +49,7 @@ function create ()
   frog.setBounce(1, 1);
   frog.setCollideWorldBounds(true);
 
-  if(IS_TOUCH ) frog.setScale(.5);
+  if(IS_TOUCH ) frog.setScale(.4); threshold = 30;
 
   // Sound effect
   boing = this.sound.add('boing');
